@@ -1,0 +1,17 @@
+.btn {
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 14px;
+    background-color: #4183d7;
+    color: #ffffff;
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    &:hover {
+        background-color: #2a558d;
+        color: #ffffff;
+    }
+}
