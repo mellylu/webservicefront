@@ -55,6 +55,7 @@ const Index = () => {
                         }}
                     />
                     <Button title="Créer" onClick={() => createTable()} />
+                    <br />
                     {message ? (
                         <div>
                             <Message type="valid" mess={message} />

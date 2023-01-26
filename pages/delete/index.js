@@ -10,11 +10,11 @@ import styles from "./index.module.scss"
 
 const Index = () => {
     const [nameTable, setNameTable] = useState("")
+    const [id, setId] = useState("")
     const [message, setMessage] = useState("")
     const [messageErreur, setMessageErreur] = useState("")
 
     const deleteTable = () => {
-        console.log(nameTable)
         axios
             .delete(`http://localhost:8000/${nameTable}`)
             .then(data => {
@@ -23,9 +23,23 @@ const Index = () => {
                 setMessageErreur()
             })
             .catch(err => {
+                setMessage()
+                setMessageErreur(err.response.data)
+            })
+    }
+
+    const deleteElement = () => {
+        axios
+            .delete(`http://localhost:8000/${nameTable}/${id}`)
+            .then(data => {
+                console.log(data)
+                setMessage(data.data)
+                setMessageErreur()
+            })
+            .catch(err => {
                 console.log(err)
-                //setMessage()
-                //setMessageErreur(err.response.data)
+                setMessage()
+                setMessageErreur(err.response.data)
             })
     }
 
@@ -36,14 +50,34 @@ const Index = () => {
                 <div>
                     <h1>DELETE</h1>
                     <Input
-                        label="Supprimer la table"
+                        label="Entrer le nom de la table pour la supprimer."
                         value={nameTable}
-                        placeholder="nom de la table"
+                        placeholder="nom table"
                         onChange={e => {
                             setNameTable(e.target.value)
                         }}
                     />
-                    <Button title="DELETE" onClick={() => deleteTable()} />
+                    <Button title="Supprimer" onClick={() => deleteTable()} />
+
+                    <br />
+
+                    <Input
+                        label="Entrer le nom de la table et l'id de l'élement à supprimer."
+                        value={nameTable}
+                        placeholder="nom table"
+                        onChange={e => {
+                            setNameTable(e.target.value)
+                        }}
+                    />
+                    <Input
+                        value={id}
+                        placeholder="id"
+                        onChange={e => {
+                            setId(e.target.value)
+                        }}
+                    />
+                    <Button title="Supprimer" onClick={() => deleteElement()} />
+                    <br />
                     {message ? (
                         <div>
                             <Message type="valid" mess={message} />

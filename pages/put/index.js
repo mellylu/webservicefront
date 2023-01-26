@@ -68,7 +68,9 @@ const Index = () => {
                         }}
                     />
 
-                    <Button title="Modifier nom" onClick={() => changeNameTable()} />
+                    <Button title="Modifier" onClick={() => changeNameTable()} />
+
+                    <br />
 
                     <Input
                         label="Entrez le nom de la table ainsi qu'un identifiant. Si la clé existe la valeur inscrite sera remplacée par l'ancienne et si elle n'existe pas alors la clé et la valeur seront ajoutée à l'objet"
@@ -97,7 +99,7 @@ const Index = () => {
                         }}
                     />
                     <Button title="Modifier" onClick={() => changeTable()} />
-
+                    <br />
                     {message ? (
                         <div>
                             <Message type="valid" mess={message} />
