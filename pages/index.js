@@ -29,11 +29,13 @@ export default function Home() {
                 setMessageTable(null)
                 setTable(data.data)
                 setShowNext(true)
+                setMessageSearch("")
             })
             .catch(err => {
                 console.log(err)
                 setMessageTable(err.response.data)
                 setShowNext(false)
+                setMessageSearch("")
             })
     }
 
@@ -42,9 +44,11 @@ export default function Home() {
             .get(`http://localhost:8000/${nameTable}/?sort=${nameSort}`)
             .then(data => {
                 setTable(data.data)
+                setMessageSearch("")
             })
             .catch(err => {
                 console.log(err)
+                setMessageSearch("")
             })
     }
 
@@ -127,7 +131,7 @@ export default function Home() {
                     )}
                     <br />
 
-                    {table && showNext ? (
+                    {table && showNext && !messageSearch ? (
                         table.map(element => (
                             <div className={styles.element} key={element.id}>
                                 {/* je n'ai pas réussi à récupérer le nom des clés en bouclant c'est pour cela qu'il y en a plusieurs */}
